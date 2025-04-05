@@ -1,0 +1,7 @@
+beta5min.tsv:
+	3 measurements with beta source measured for 3x5 minute intervals
+
+background.tsv
+	3 measurements with no radiation source measured for 3x5 minute intervals
+plateau data.tsv
+	26 x30 second measurements with beta source on top shelf
