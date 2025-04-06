@@ -143,12 +143,13 @@ if GRAPH:
     ThA=np.array([float(Shields["thicknesses"][i//2]) for i in range(8)])
     ThB=np.array([float(Shields["thicknesses"][i//2]) for i in range(8,26)])
     
-
+    mask=np.ones(A.shape,dtype=bool)
+    mask[4]=0
     
     ax5.errorbar(ThA,A,yerr=np.sqrt(A),linestyle="none",marker=".",label="Pb")
     ax5.errorbar(ThB,B,yerr=np.sqrt(B),linestyle="none",marker=".",label="Al")
     
-    param,cov=scipy.optimize.curve_fit(exponential,ThA,A,p0=[732,-1.5,0])
+    param,cov=scipy.optimize.curve_fit(exponential,ThA[mask],A[mask],p0=[732,-1.5,0])
     ax5.plot(ThA,exponential(ThA,param[0],param[1],param[2]),label=f"${param[0]:0.0f}e^{{{param[1]:0.1f}x}}+{param[2]:0.0f}$")
     
     param,cov=scipy.optimize.curve_fit(exponential,ThB,B,p0=[732,-1.5,0])
